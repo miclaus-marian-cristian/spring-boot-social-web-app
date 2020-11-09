@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Status {
@@ -18,6 +20,7 @@ public class Status {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Size(min = 5, max = 255, message = "PLease enter between 5 and 255 characters.")
 	@Column(name = "Content")
 	private String text;
 	

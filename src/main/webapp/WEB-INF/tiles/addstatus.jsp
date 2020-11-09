@@ -16,7 +16,9 @@
 			</div>
 
 			<div class="panel-body">
-
+				<div>
+					<form:errors path = "text"/>
+				</div>
 				<form:form modelAttribute="status">
 
 					<div class="form-group">

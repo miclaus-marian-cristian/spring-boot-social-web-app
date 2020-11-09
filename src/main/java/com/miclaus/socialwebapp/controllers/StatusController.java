@@ -1,7 +1,10 @@
 package com.miclaus.socialwebapp.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,11 +30,14 @@ public class StatusController {
 	}
 	
 	@RequestMapping(value = "/addstatus", method = RequestMethod.POST)
-	public ModelAndView addstatus(ModelAndView modelAndView, Status status) {
-		
-		statusService.save(status);
+	public ModelAndView addstatus(ModelAndView modelAndView, @Valid Status status, BindingResult result) {
+		//if we have no errors go ahead and save...
+		if(!result.hasErrors()) {
+			statusService.save(status);
+			modelAndView.getModel().put("status", new Status());
+		}
+
 		modelAndView.setViewName("app.addstatus");
-		modelAndView.getModel().put("status", new Status());
 		modelAndView.getModel().put("latestStatus", status);
 		return modelAndView;
 		
