@@ -10,23 +10,11 @@ import com.miclaus.socialwebapp.Service.StatusService;
 import com.miclaus.socialwebapp.models.Status;
 
 @Controller
-public class PageController {
+public class StatusController {
 
 	@Autowired
 	private StatusService statusService;
 	
-	@RequestMapping("/")
-	public ModelAndView home(ModelAndView modelAndView) {
-		modelAndView.setViewName("app.home");
-		return modelAndView;
-	}
-
-	@RequestMapping("/about")
-	public ModelAndView about(ModelAndView modelAndView) {
-		modelAndView.setViewName("app.about");
-		return modelAndView;
-	}
-
 	@RequestMapping(value = "/addstatus", method = RequestMethod.GET)
 	public ModelAndView addStatus(ModelAndView modelAndView) {
 		
@@ -37,7 +25,7 @@ public class PageController {
 		return modelAndView;
 		
 	}
-
+	
 	@RequestMapping(value = "/addstatus", method = RequestMethod.POST)
 	public ModelAndView addstatus(ModelAndView modelAndView, Status status) {
 		
@@ -48,5 +36,5 @@ public class PageController {
 		return modelAndView;
 		
 	}
-
+	
 }
