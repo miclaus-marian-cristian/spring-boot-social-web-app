@@ -20,7 +20,7 @@ public class Status {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Size(min = 5, max = 255, message = "PLease enter between 5 and 255 characters.")
+	@Size(min = 5, max = 255, message = "{status.text.size}")
 	@Column(name = "Content")
 	private String text;
 	

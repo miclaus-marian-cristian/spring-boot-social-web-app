@@ -4,6 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
+
 	<definition name="app.default" template="/WEB-INF/layouts/default.jsp">
 		<put-attribute name="title" value="Social Web App"/>
 	</definition>
@@ -15,8 +16,13 @@
 	<definition name="app.about" extends="app.default">
 		<put-attribute name="content" value="/WEB-INF/tiles/about.jsp"/>
 	</definition>
+	
 	<definition name="app.addstatus" extends="app.default">
 		<put-attribute name="content" value="/WEB-INF/tiles/addstatus.jsp" />
+	</definition>
+	
+	<definition name="app.viewStatus" extends="app.default">
+		<put-attribute name="content" value="/WEB-INF/tiles/viewstatus.jsp" />
 	</definition>
 	
 </tiles-definitions>

@@ -16,11 +16,11 @@
 			</div>
 
 			<div class="panel-body">
-				<div>
-					<form:errors path = "text"/>
-				</div>
+				
 				<form:form modelAttribute="status">
-
+					<div>
+						<form:errors path="text" class = "text-danger"></form:errors>
+					</div>
 					<div class="form-group">
 						<form:textarea path="text" name="text" rows="5" cols="50"></form:textarea>
 					</div>
