@@ -11,7 +11,7 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!-- Bootstrap -->
 <link href="${contextRoot}/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="${contextRoot}/css/main.css" rel="stylesheet">
 <title><tiles:insertAttribute name="title" /></title>
 
 </head>
@@ -34,6 +34,7 @@
 					<li class="active"><a href="${contextRoot}/">Home</a></li>
 					<li class=""><a href="${contextRoot}/about">About</a></li>
 					<li class=""><a href="${contextRoot}/addstatus">AddStatus</a></li>
+					<li><a href="${contextRoot}/viewstatus">View Statuses</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="../navbar/">Something here</a></li>

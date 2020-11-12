@@ -54,7 +54,7 @@ public class StatusController {
 		
 		modelAndView.getModel().put("page", page);
 		
-		modelAndView.setViewName("app.viewStatus");
+		modelAndView.setViewName("app.viewstatus");
 		
 		return modelAndView;
 	}

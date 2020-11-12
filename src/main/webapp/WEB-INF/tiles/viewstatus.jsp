@@ -3,27 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<%@ taglib prefix="pg" tagdir="/WEB-INF/tags" %>
+
 <c:url var="url" value="/viewstatus" />
 
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
 
-		<c:forEach var="pageNumber" begin="1" end="${page.totalPages}">
-
-			<c:choose>
-
-				<c:when test="${pageNumber - 1 != page.number}">
-					<a href="${url}?p=${pageNumber}"><c:out value="${pageNumber}" /></a>
-				</c:when>
-
-				<c:otherwise>
-					<strong><c:out value="${pageNumber}" /></strong>
-				</c:otherwise>
-			</c:choose>
-
-			<c:if test="${pagenNumber != page.totalPages }"> | </c:if>
-
-		</c:forEach>
+		<div class="pagination">
+			<pg:pagination url="${url}" page="${page}" size="3"/>
+		</div>
 
 		<c:forEach var="status" items="${ page.content}">
 
