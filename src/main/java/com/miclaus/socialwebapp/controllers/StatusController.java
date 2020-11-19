@@ -5,8 +5,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,13 +35,15 @@ public class StatusController {
 	}
 
 	@RequestMapping(value = "/addstatus", method = RequestMethod.POST)
-	public ModelAndView addstatus(ModelAndView modelAndView, 
-								@Valid @ModelAttribute(name = "status") Status status,
-								BindingResult result) {
+	public ModelAndView addstatus(ModelAndView modelAndView, @Valid @RequestBody Status status
+								,BindingResult result) 
+	{
 		//if we have no errors go ahead and save...
 		if(!result.hasErrors()) {
 			statusService.save(status);
-			modelAndView.getModel().put("status", new Status());
+			ModelMap modelMap = new ModelMap();		
+//			modelMap.addAttribute("attribute", "addstatus");
+			return new ModelAndView("redirect:/viewstatus", modelMap);
 		}
 		Status latestStatus = statusService.getLatest();
 		modelAndView.setViewName("app.addstatus");
