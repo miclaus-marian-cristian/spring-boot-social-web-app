@@ -29,4 +29,8 @@ public class StatusService {
 		PageRequest request = PageRequest.of(pageNumber - 1, PAGESIZE, Direction.DESC, "addedTime");
 		return statusDao.findAll(request);
 	}
+
+	public void delete(Long id) {
+		statusDao.deleteById(id);
+	}
 }

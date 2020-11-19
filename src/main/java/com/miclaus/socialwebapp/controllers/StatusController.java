@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,7 +41,6 @@ public class StatusController {
 		if(!result.hasErrors()) {
 			statusService.save(status);
 			ModelMap modelMap = new ModelMap();		
-//			modelMap.addAttribute("attribute", "addstatus");
 			return new ModelAndView("redirect:/viewstatus", modelMap);
 		}
 		Status latestStatus = statusService.getLatest();
@@ -61,6 +59,16 @@ public class StatusController {
 		modelAndView.setViewName("app.viewstatus");
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/deletestatus", method = RequestMethod.GET)
+	public ModelAndView deleteStatus(ModelAndView mav, @RequestParam(name = "id") Long id) {
+		
+		statusService.delete(id);
+		
+		mav.setViewName("redirect:/viewstatus");
+		return mav;
+		
 	}
 	
 }

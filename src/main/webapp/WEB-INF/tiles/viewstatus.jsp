@@ -16,6 +16,9 @@
 
 		<c:forEach var="status" items="${ page.content}">
 
+			<c:url var="editLink" value="/editstatus?id=${status.id}"/>
+			<c:url var="deleteLink" value="/deletestatus?id=${status.id}"/>
+
 			<div class="panel panel-default">
 
 				<div class="panel-heading">
@@ -29,6 +32,12 @@
 				<div class="panel-body">
 
 					<c:out value="${status.text}" />
+					
+					<a href="${editLink }" class="pull-right" >Edit</a>
+					<a href="${deleteLink}" class="pull-right" 
+					onclick="return confirm('Are you sure you want to delete it?' )">
+						Delete
+					</a>
 
 				</div>
 
