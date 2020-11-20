@@ -1,4 +1,4 @@
-package com.miclaus.socialwebapp.Service;
+package com.miclaus.socialwebapp.service;
 
 import java.util.Optional;
 

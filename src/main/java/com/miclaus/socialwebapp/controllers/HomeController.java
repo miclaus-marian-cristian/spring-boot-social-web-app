@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.miclaus.socialwebapp.Service.StatusService;
 import com.miclaus.socialwebapp.models.Status;
+import com.miclaus.socialwebapp.service.StatusService;
 
 @Controller
 public class HomeController {

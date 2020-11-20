@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.miclaus.socialwebapp.Service.StatusService;
 import com.miclaus.socialwebapp.models.Status;
+import com.miclaus.socialwebapp.service.StatusService;
 
 @Controller
 public class StatusController {
