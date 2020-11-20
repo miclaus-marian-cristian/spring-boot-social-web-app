@@ -1,5 +1,7 @@
 package com.miclaus.socialwebapp.controllers;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,37 @@ public class StatusController {
 
 	@Autowired
 	private StatusService statusService;
+	
+	@RequestMapping(value = "/editstatus", method = RequestMethod.POST)
+	ModelAndView postEditStatus(ModelAndView mav, @Valid Status status, BindingResult bindingResult) {
+		
+		mav.setViewName("app.editstatus");
+		
+		if(!bindingResult.hasErrors()) {
+			statusService.save(status);
+			mav.setViewName("redirect:/viewstatus");
+			return mav;
+		}
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/editstatus", method = RequestMethod.GET)
+	ModelAndView getEditStatus(ModelAndView mav, @RequestParam(name = "id") Long id) {
+		Optional<Status> optional = statusService.get(id);
+		Status status;
+		
+		if(optional.isPresent()) {
+			status = optional.get();
+		}else {
+			mav.setViewName("redirect:/viewstatus");
+			return mav;
+		}
+		
+		mav.getModel().put("status", status);
+		mav.setViewName("app.editstatus");
+		return mav;
+	}
 
 	@RequestMapping(value = "/addstatus", method = RequestMethod.GET)
 	public ModelAndView addStatus(ModelAndView modelAndView) {

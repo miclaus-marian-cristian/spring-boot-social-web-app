@@ -13,6 +13,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Status {
 
@@ -24,6 +26,7 @@ public class Status {
 	@Column(name = "Content")
 	private String text;
 	
+	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date addedTime;
 	

@@ -1,5 +1,7 @@
 package com.miclaus.socialwebapp.Service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,5 +34,9 @@ public class StatusService {
 
 	public void delete(Long id) {
 		statusDao.deleteById(id);
+	}
+	
+	public Optional<Status> get(Long id) {
+		return statusDao.findById(id);
 	}
 }
