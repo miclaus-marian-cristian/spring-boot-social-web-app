@@ -7,10 +7,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.miclaus.socialwebapp.service.SiteUserService;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private SiteUserService siteUserService;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		//@formatter:on
@@ -23,14 +28,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.and()
 				.formLogin()
 				.loginPage("/login")
-				.defaultSuccessUrl("/")
+				.defaultSuccessUrl("/viewstatus")
+				.permitAll()
+				.and()
+			.logout()
 				.permitAll();
 		//@formatter:off
 	}
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("john").password("password").roles("USER");
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(siteUserService);
 	}
 	
 }

@@ -13,8 +13,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.miclaus.socialwebapp.Service.StatusService;
 import com.miclaus.socialwebapp.models.Status;
+import com.miclaus.socialwebapp.service.StatusService;
 
 @WebMvcTest(StatusController.class)
 public class StatusControllerTest {

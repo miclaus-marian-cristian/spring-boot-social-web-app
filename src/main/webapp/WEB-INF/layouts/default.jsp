@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,14 +39,29 @@
 					<li><a href="${contextRoot}/viewstatus">View Statuses</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../navbar/">Something here</a></li>
+					
+					<sec:authorize access="!isAuthenticated()">
+						<li><a href="${contextRoot}/login">Login</a></li>
+					</sec:authorize>
+					
+					<sec:authorize access="isAuthenticated()">
+						<li><a href="javascript:$(#logoutForm).submit()">Logout</a></li>
+					</sec:authorize>
+					
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
+	<c:url var="logoutUrl" value="/logout"/>
+	<form id="logoutForm" action="${logotUrl}" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${ _csrf.token }"/>
+	</form>
 
-	<tiles:insertAttribute name="content" />
+	<div class="container">
+		<tiles:insertAttribute name="content" />
+	</div>
+	
 	<script src="${contextRoot}/js/jquery-3.5.1.min.js"></script>
 	<script src="${contextRoot}/js/bootstrap.min.js"></script>
 </body>
