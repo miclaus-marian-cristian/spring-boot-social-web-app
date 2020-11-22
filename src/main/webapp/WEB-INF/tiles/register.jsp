@@ -4,8 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
-<c:url var="loginUrl" value="/login" />
-
 <div class="row">
 
 	<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -24,22 +22,25 @@
 				<form:form method="post" modelAttribute="user">
 
 					<div class="input-group">
-						<form:input type="text" path="email" placeholder="Email"
+						<label for="email">E-mail address:</label>
+						<form:input type="text" path="email" placeholder="Email" id="email"
 							class="form-control" />
 					</div>
 
 					<div class="input-group">
+						<label for="pass">Password:</label>
 						<form:input type="password" path="password" placeholder="Password"
-							class="form-control" />
+							class="form-control" id="pass" />
 					</div>
 					
 					<div class="input-group">
-						<input type="password" name="repeatpassword" placeholder="Repeat password"
+						<label for="rpass">Confirm Password:</label>
+						<input type="password" name="repeatpassword" id="rpass" placeholder="Repeat password"
 							class="form-control" />
 					</div>
 
 					<div class="input-group">
-						<button type="submit" class="btn-primary pull-right">Register</button>
+						<button type="submit" class="btn-primary form-control pull-right">Register</button>
 					</div>
 
 				</form:form>
@@ -47,7 +48,5 @@
 		</div>
 
 	</div>
-
-
 
 </div>

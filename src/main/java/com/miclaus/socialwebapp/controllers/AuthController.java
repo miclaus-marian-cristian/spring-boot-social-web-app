@@ -19,8 +19,11 @@ public class AuthController {
 	private SiteUserService siteUserService;
 	
 	@GetMapping("/login")
-	String getLogin() {
-		return "app.login";
+	ModelAndView getLogin(ModelAndView mav) {
+		mav.getModel().put("user", new SiteUser());
+		mav.setViewName("app.login");
+		
+		return mav;
 	}
 	
 	@GetMapping("/register")
@@ -41,7 +44,7 @@ public class AuthController {
 		if(!result.hasErrors()) {
 			
 			siteUserService.register(siteUser);
-			mAv.setViewName("redirect:/viewstatus");
+			mAv.setViewName("redirect:/login");
 			
 		}
 		

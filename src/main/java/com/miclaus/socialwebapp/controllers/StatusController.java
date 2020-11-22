@@ -67,17 +67,17 @@ public class StatusController {
 	}
 
 	@RequestMapping(value = "/addstatus", method = RequestMethod.POST)
-	public ModelAndView addstatus(ModelAndView modelAndView, @Valid @RequestBody Status status
+	public ModelAndView addstatus(ModelAndView modelAndView, @Valid Status status
 								,BindingResult result) 
 	{
+		modelAndView.setViewName("app.addstatus");
 		//if we have no errors go ahead and save...
 		if(!result.hasErrors()) {
-			statusService.save(status);
-			ModelMap modelMap = new ModelMap();		
-			return new ModelAndView("redirect:/viewstatus", modelMap);
+			statusService.save(status);	
+			modelAndView.setViewName("redirect:/viewstatus");
 		}
 		Status latestStatus = statusService.getLatest();
-		modelAndView.setViewName("app.addstatus");
+
 		modelAndView.getModel().put("latestStatus", latestStatus);
 		return modelAndView;	
 	}

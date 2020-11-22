@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ taglib prefix="pg" tagdir="/WEB-INF/tags" %>
 
@@ -32,12 +33,15 @@
 				<div class="panel-body">
 
 					<c:out value="${status.text}" />
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
 					
-					<a href="${editLink }" class="pull-right" >Edit</a>
-					<a href="${deleteLink}" class="pull-right" 
-					onclick="return confirm('Are you sure you want to delete it?' )">
-						Delete
-					</a>
+						<a href="${editLink }" class="pull-right" >Edit</a>
+						<a href="${deleteLink}" class="pull-right" 
+						onclick="return confirm('Are you sure you want to delete it?' )">
+							Delete
+						</a>
+					
+					</sec:authorize>
 
 				</div>
 

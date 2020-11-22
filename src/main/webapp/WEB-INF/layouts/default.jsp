@@ -18,6 +18,7 @@
 
 </head>
 <body>
+	<script src="${contextRoot}/js/jquery-3.5.1.min.js"></script>
 	<!-- Static navbar -->
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container">
@@ -35,17 +36,26 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="${contextRoot}/">Home</a></li>
 					<li class=""><a href="${contextRoot}/about">About</a></li>
-					<li class=""><a href="${contextRoot}/addstatus">AddStatus</a></li>
-					<li><a href="${contextRoot}/viewstatus">View Statuses</a></li>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<li class=""><a href="${contextRoot}/addstatus">AddStatus</a></li>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<li><a href="${contextRoot}/viewstatus">View Statuses</a></li>
+					</sec:authorize>
+					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
+					
+					<sec:authorize access="!isAuthenticated()">
+						<li><a href="${contextRoot}/register">Register</a></li>
+					</sec:authorize>
 					
 					<sec:authorize access="!isAuthenticated()">
 						<li><a href="${contextRoot}/login">Login</a></li>
 					</sec:authorize>
 					
 					<sec:authorize access="isAuthenticated()">
-						<li><a href="javascript:$(#logoutForm).submit()">Logout</a></li>
+						<li id="logout"><a href="<c:url value="/logout" />">Logout</a></li>
 					</sec:authorize>
 					
 				</ul>
@@ -54,7 +64,7 @@
 		</div>
 	</nav>
 	<c:url var="logoutUrl" value="/logout"/>
-	<form id="logoutForm" action="${logotUrl}" method="post">
+	<form name="logoutForm" action="${logotUrl}" method="post">
 		<input type="hidden" name="${_csrf.parameterName}" value="${ _csrf.token }"/>
 	</form>
 
@@ -62,7 +72,13 @@
 		<tiles:insertAttribute name="content" />
 	</div>
 	
-	<script src="${contextRoot}/js/jquery-3.5.1.min.js"></script>
-	<script src="${contextRoot}/js/bootstrap.min.js"></script>
+
+<%-- 	<script src="${contextRoot}/js/bootstrap.min.js"></script> --%>
+<!-- 	<script> -->
+// 		let logoutLink = document.getElementById("logout");
+// 		logoutLink.onclick = function(){
+// 			document.forms["logoutForm"].submit();
+// 		};
+<!-- 	</script> -->
 </body>
 </html>
